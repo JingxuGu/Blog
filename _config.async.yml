@@ -64,7 +64,7 @@ sidebar:
   social:  # 社交地址
     - name: github
       icon: fab fa-github   
-      url: https://github.com/GrainRainy
+      url: https://github.com/JingxuGu
 
 ## 打字动画
 typedTextPrefix: Stay
