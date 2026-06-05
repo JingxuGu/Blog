@@ -10,34 +10,34 @@
 <meta name="description" content="线段树进阶应用动态开点线段树多用于维护权值线段树, 省去离散化的时空复杂度.  节点个数 $\mathcal{O}(n \cdot \log S)$. （$n$ 为插入次数, $S$ 为维护值域） 前置数组1int root, tTol, lson[N &lt;&lt; 1], rson[N &lt;&lt; 1];  $root$ 表示线段树根节点.$tTol$ 维护栈顶位置, 达到动态开点的目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线段树进阶应用">
-<meta property="og:url" content="http://example.com/advanced_segment_tree/index.html">
+<meta property="og:url" content="https://jingxugu.github.io/Blog/advanced_segment_tree/index.html">
 <meta property="og:site_name" content="GrainRain &#39;s Blog">
 <meta property="og:description" content="线段树进阶应用动态开点线段树多用于维护权值线段树, 省去离散化的时空复杂度.  节点个数 $\mathcal{O}(n \cdot \log S)$. （$n$ 为插入次数, $S$ 为维护值域） 前置数组1int root, tTol, lson[N &lt;&lt; 1], rson[N &lt;&lt; 1];  $root$ 表示线段树根节点.$tTol$ 维护栈顶位置, 达到动态开点的目">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/404.jpg">
-<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="https://jingxugu.github.io/Blog/img/404.jpg">
+<meta property="og:image" content="https://jingxugu.github.io/Blog/img/404.jpg">
 <meta property="article:published_time" content="2023-07-04T07:07:21.000Z">
 <meta property="article:modified_time" content="2025-09-24T15:28:06.035Z">
 <meta property="article:author" content="GrainRain">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/404.jpg">
+<meta name="twitter:image" content="https://jingxugu.github.io/Blog/img/404.jpg">
 
 
 <title >线段树进阶应用</title>
 
 <!-- Favicon -->
 
-    <link href='/img/logo-16%C3%9716.png?v=2.2.2' rel='icon' type='image/png' sizes='16x16' ></link>
+    <link href='/Blog/img/logo-16%C3%9716.png?v=2.2.2' rel='icon' type='image/png' sizes='16x16' ></link>
 
 
-    <link href='/img/logo-32%C3%9732.png?v=2.2.2' rel='icon' type='image/png' sizes='32x32' ></link>
+    <link href='/Blog/img/logo-32%C3%9732.png?v=2.2.2' rel='icon' type='image/png' sizes='32x32' ></link>
 
 
-    <link href='/apple-touch-icon.png?v=2.2.2' rel='apple-touch-icon' sizes='180x180' ></link>
+    <link href='/Blog/apple-touch-icon.png?v=2.2.2' rel='apple-touch-icon' sizes='180x180' ></link>
 
 
-    <link href='/site.webmanifest' rel='manifest' ></link>
+    <link href='/Blog/site.webmanifest' rel='manifest' ></link>
 
 
 <!-- Plugin -->
@@ -46,7 +46,7 @@
 
 
     
-<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+<link rel="stylesheet" href="/Blog/css/plugins/bootstrap.row.css">
 
     
 <link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
@@ -62,17 +62,17 @@
 <!-- Icon -->
 
     
-<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+<link rel="stylesheet" href="/Blog/css/plugins/font-awesome.min.css">
 
 
 
 
 <!-- Variable -->
-<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"GrainRain","root":"/","typed_text":null,"theme_version":"2.2.2","theme":{"switch":true,"default":"auto"},"favicon":{"logo":"/img/logo-32×32.png","icon16":"/img/logo-16×16.png","icon32":"/img/logo-32×32.png","apple_touch_icon":null,"webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","show_text":"(/≧▽≦/)Hey! Good again!","hide_text":"(●—●)Oh, crash!","appleTouchIcon":"apple-touch-icon.png","showText":"(/≧▽≦/)嘿！骗你的！","hideText":"(●—●)哎呀，崩溃了！"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode","notice_outdate_message":"It has been undefined days since the last update, the content of the article may be outdated.","sticky":"TOP","just":"Just","min":"minutes ago","hour":"hours ago","day":"days ago","month":"months ago"},"swup":true,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"12/25/2022 17:00:00","prefix":"该服务器已在冒烟的边缘运行了 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.xml"}};</script>
+<script>window.ASYNC_CONFIG = {"hostname":"jingxugu.github.io","author":"GrainRain","root":"/Blog/","typed_text":null,"theme_version":"2.2.2","theme":{"switch":true,"default":"auto"},"favicon":{"logo":"/img/logo-32×32.png","icon16":"/img/logo-16×16.png","icon32":"/img/logo-32×32.png","apple_touch_icon":null,"webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","show_text":"(/≧▽≦/)Hey! Good again!","hide_text":"(●—●)Oh, crash!","appleTouchIcon":"apple-touch-icon.png","showText":"(/≧▽≦/)嘿！骗你的！","hideText":"(●—●)哎呀，崩溃了！"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode","notice_outdate_message":"It has been undefined days since the last update, the content of the article may be outdated.","sticky":"TOP","just":"Just","min":"minutes ago","hour":"hours ago","day":"days ago","month":"months ago"},"swup":true,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"12/25/2022 17:00:00","prefix":"该服务器已在冒烟的边缘运行了 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.xml"}};</script>
 <script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-09-24 23:28:06"};</script>
 
 <!-- Theme mode css -->
-<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.2" id="trm-switch-style">
+<link data-swup-theme rel="stylesheet" href="/Blog/css/index.css?v=2.2.2" id="trm-switch-style">
 <script>
     let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
     let catchMode = localStorage.getItem('theme-mode') || defaultMode;
@@ -91,7 +91,7 @@
 <!-- Site Analytics -->
 
  
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="GrainRain 's Blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/Blog/atom.xml" title="GrainRain 's Blog" type="application/atom+xml">
 </head>
 
 <body>
@@ -136,9 +136,9 @@
 	<div class="container">
 		<div class="trm-left-side">
 			<!-- logo -->
-<a href="/" class="trm-logo-frame trm-anima-link">
+<a href="/Blog/" class="trm-logo-frame trm-anima-link">
     
-        <img alt="logo" src="/img/logo-32%C3%9732.png">
+        <img alt="logo" src="/Blog/img/logo-32%C3%9732.png">
     
     
         <div class="trm-logo-text">
@@ -155,7 +155,7 @@
         <ul>
             
             <li class="menu-item-has-children ">
-                <a  href="/" target="">
+                <a  href="/Blog/" target="">
                     Home
                 </a>
                 
@@ -169,49 +169,49 @@
                 <ul>
                     
                     <li>
-                        <a  href="/archives/" target="">
+                        <a  href="/Blog/archives/" target="">
                             year
                         </a>
                     </li>
                     
                     <li>
-                        <a  href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" target="">
+                        <a  href="/Blog/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" target="">
                             动态规划
                         </a>
                     </li>
                     
                     <li>
-                        <a  href="/categories/%E5%9B%BE%E8%AE%BA/" target="">
+                        <a  href="/Blog/categories/%E5%9B%BE%E8%AE%BA/" target="">
                             图论
                         </a>
                     </li>
                     
                     <li>
-                        <a  href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" target="">
+                        <a  href="/Blog/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" target="">
                             基础算法
                         </a>
                     </li>
                     
                     <li>
-                        <a  href="/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/" target="">
+                        <a  href="/Blog/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/" target="">
                             字符串
                         </a>
                     </li>
                     
                     <li>
-                        <a  href="/categories/%E6%95%B0%E5%AD%A6/" target="">
+                        <a  href="/Blog/categories/%E6%95%B0%E5%AD%A6/" target="">
                             数学
                         </a>
                     </li>
                     
                     <li>
-                        <a  href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="">
+                        <a  href="/Blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="">
                             数据结构
                         </a>
                     </li>
                     
                     <li>
-                        <a  href="/categories/%E9%B2%9C%E8%8A%B1/" target="">
+                        <a  href="/Blog/categories/%E9%B2%9C%E8%8A%B1/" target="">
                             鲜花
                         </a>
                     </li>
@@ -221,14 +221,14 @@
             </li>
             
             <li class="menu-item-has-children ">
-                <a data-no-swup href="/links/" target="">
+                <a data-no-swup href="/Blog/links/" target="">
                     Links
                 </a>
                 
             </li>
             
             <li class="menu-item-has-children ">
-                <a data-no-swup href="/about/" target="">
+                <a data-no-swup href="/Blog/about/" target="">
                     About
                 </a>
                 
@@ -272,7 +272,7 @@
     <div class="trm-banner">
     
     <!-- banner cover -->
-    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/banner.png">
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/Blog/img/banner.png">
     <!-- banner cover end -->
     
 
@@ -295,7 +295,7 @@
                         
                             <ul class="trm-breadcrumbs trm-label">
                                 <li>
-                                    <a href="/" class="trm-anima-link">Home</a>
+                                    <a href="/Blog/" class="trm-anima-link">Home</a>
                                 </li>
                                 <li>
                                     <span>
@@ -470,7 +470,7 @@
 <h3 id="Solutions-4"><a href="#Solutions-4" class="headerlink" title="$Solutions$"></a>$Solutions$</h3><p>最暴力的想法是依照题意连边, 复杂度 $O(n^2)$</p>
 <p>尝试进行优化, 我们知道线段树的一个节点代表一个区间, 因此由一个点向区间连边可视为向线段树上的最多 $n \cdot \log n$ 个节点连边. 由区间向点连边的情况与上述类似. </p>
 <p>线段树上大区间和子区间之间转移也是可以的, 因此需要在线段树节点之间连权值为 $0$ 的边. 同理, 小区间向大区间转移也是可以的, 但显然不能在同一棵线段树之间连双向权值为 $0$ 的边, 因此考虑建两棵线段树, 一棵连由子节点向上的边, 一棵连由父节点向下的边. 同时, 也要在代表同一个区间的叶节点连权值为 $0$ 的边. </p>
-<p><img src="https://pic.imgdb.cn/item/64b1138e1ddac507cc55ba2a.jpg"  data-tag='post-image' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p><img src="https://pic.imgdb.cn/item/64b1138e1ddac507cc55ba2a.jpg"  data-tag='post-image' loading="lazy" onerror='this.onerror=null;this.src="/Blog/img/404.jpg"'></p>
 <p>最后从起始节点跑一遍最短路即可, 时间复杂度 $O(n \cdot \log n)$</p>
 <p>记得算好空间 $4 \cdot n + n \cdot \log n$</p>
 <h3 id="建树与连边-Code"><a href="#建树与连边-Code" class="headerlink" title="建树与连边 $Code$"></a>建树与连边 $Code$</h3><p>代码中两棵树的距离 $GAP$ 为 $4n$</p>
@@ -480,7 +480,7 @@
 
 <hr>
 <h2 id="扫描线"><a href="#扫描线" class="headerlink" title="扫描线"></a>扫描线</h2><p>当维护矩形面积并时, 也可以尝试使用线段树优化. </p>
-<p><img src="https://pic.imgdb.cn/item/63ff17e5f144a01007cc4b7b.jpg"  data-tag='post-image' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p><img src="https://pic.imgdb.cn/item/63ff17e5f144a01007cc4b7b.jpg"  data-tag='post-image' loading="lazy" onerror='this.onerror=null;this.src="/Blog/img/404.jpg"'></p>
 <p>如图, 建立平面直角坐标系, 如果对于 $n$ 个矩形左右边界作为分割线, 可以将整张图分为 $2n - 1$ 个区间, 左边界赋为 $+1$, 右边界赋为 $-1$, 需要维护面积时, 只需要将当前边上<strong>值为正数的部分乘横坐标之差</strong>即可. 因此我们将问题转化成了<strong>维护区间正值部分</strong>. </p>
 <p>考虑解决问题需要的信息, 在线段树节点上维护 $cnt$, 表示当前区间<strong>整体</strong>被覆盖的次数, $len$ 表示值大于 $0$ 的区间长度. 考虑到仍不是很好维护, 我们尝试从中挖掘一些性质：</p>
 <ol>
@@ -509,7 +509,7 @@
     <div class="trm-older-publications-card trm-scroll-animation trm-active-el">
         <div class="trm-older-publication">
             
-            <a class="trm-op-top trm-anima-link" href="/combinatorics/">
+            <a class="trm-op-top trm-anima-link" href="/Blog/combinatorics/">
                 <span class="trm-op-cover">
                     <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/64f9ea3f661c6c8e546b5acc.jpg">
                 </span>
@@ -530,7 +530,7 @@
     <div class="trm-older-publications-card trm-scroll-animation trm-active-el">
         <div class="trm-older-publication">
             
-            <a class="trm-op-top trm-anima-link" href="/Network_Flow/">
+            <a class="trm-op-top trm-anima-link" href="/Blog/Network_Flow/">
                 <span class="trm-op-cover">
                     <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/64bfccda1ddac507cc5bf040.png">
                 </span>
@@ -682,7 +682,7 @@
         
 <script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
 
-        <script src="/js/plugins/local_search.js?v=2.2.2"></script>
+        <script src="/Blog/js/plugins/local_search.js?v=2.2.2"></script>
     
 
     <!-- 数学公式 -->
@@ -760,7 +760,7 @@
 
 
 
-<script id="async-script" src="/js/main.js?v=2.2.2"></script>
+<script id="async-script" src="/Blog/js/main.js?v=2.2.2"></script>
 
 <!-- CDN -->
 
