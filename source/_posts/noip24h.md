@@ -6,6 +6,7 @@ tags: 鲜花
 author: GrainRain
 cover: https://pic.imgdb.cn/item/6556c27ac458853aefc5c0df.jpg
 single_column: true
+hidden: true
 ---
 
 # NOIP $\rm 24$ 小时

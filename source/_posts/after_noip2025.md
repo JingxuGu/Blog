@@ -6,6 +6,7 @@ tags: 常见题型
 author: GrainRain
 cover: https://pic1.imgdb.cn/item/692a9df627638c120a3c5b29.jpg
 single_column: true
+hidden: true
 ---
 
 > 此文致 S2OI 学弟，也致 oi 中的普通人。
